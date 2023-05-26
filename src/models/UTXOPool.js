@@ -1,21 +1,29 @@
 import UTXO from './UTXO.js'
-
+import {clone} from "ramda";
 class UTXOPool {
-  constructor(utxos = {}) {}
+  constructor(utxos = {}) {
+    this.utxos=utxos
+  }
 
-  addUTXO(publicKey, amount) {}
-
-  clone() {}
-
-  // 处理交易函数
-  handleTransaction() {}
-
-  // 验证交易合法性
+  // 添加交易函数
   /**
-   * 验证余额
-   * 返回 bool 
+   * 将交易的信息更新至 UTXOPool 中
    */
-  isValidTransaction() {}
+  addUTXO(publicKey,amount) {
+    if (this.utxos[publicKey]){
+      this.utxos[publicKey].amount += amount
+    }
+    else {
+      const newUtxo = new UTXO(publicKey,amount)
+      this.utxos[publicKey] = newUtxo
+    }
+
+  }
+
+  // 将当前 UXTO 的副本克隆
+  clone() {
+    return new UTXOPool(clone(this.utxos))
+  }
 }
 
 export default UTXOPool
