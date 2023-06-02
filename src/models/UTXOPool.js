@@ -1,14 +1,36 @@
 import UTXO from './UTXO.js'
-import {clone} from "ramda";
+
+import {clone, values} from "ramda";
 class UTXOPool {
   constructor(utxos = {}) {
     this.utxos=utxos
   }
 
+
   // 添加交易函数
+
+
+
+  // 处理交易函数
+  handleTransaction(transaction) {
+    if (!this.isValidTransaction(transaction.inputPublicKey,transaction.value)){
+      return
+    }
+    const inUtxo = this.utxos[transaction.inputPublicKey]
+    inUtxo.amount -= transaction.value
+    if (inUtxo.amount <=0){
+      delete this.utxos[transaction.inputPublicKey]
+    }
+    this.addUTXO(transaction.outputPublicKey,transaction.value)
+
+  }
+
+  // 验证交易合法性
+
   /**
    * 将交易的信息更新至 UTXOPool 中
    */
+
   addUTXO(publicKey,amount) {
     if (this.utxos[publicKey]){
       this.utxos[publicKey].amount += amount
@@ -24,6 +46,18 @@ class UTXOPool {
   clone() {
     return new UTXOPool(clone(this.utxos))
   }
+
+  isValidTransaction(inputPublicKey,value) {
+    const Utxo = this.utxos[inputPublicKey]
+    if (Utxo == undefined){
+      return false
+    }
+    else {
+      return Utxo.amount >= value && value > 0
+    }
+  }
+
+
 }
 
 export default UTXOPool

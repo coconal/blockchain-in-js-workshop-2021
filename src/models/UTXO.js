@@ -4,3 +4,4 @@ export default class UTXO {
     this.amount = amount
   }
 }
+
