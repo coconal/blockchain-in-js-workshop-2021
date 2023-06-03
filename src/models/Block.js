@@ -16,7 +16,7 @@ class Block {
     this.height = height;
     this.coinbaseBeneficiary = coinbaseBeneficiary
     this.utxoPool = new UTXOPool()
-    this.transactions = []
+    this.transactions = {}
     //this.calculateMerkelRoot()
   }
 
