@@ -38,12 +38,11 @@ https://github.com/coconal/blockchain-in-js-workshop-2021/commit/0270d3cfdb76bd8
 
 
 ## 第二课代码
-
+https://github.com/coconal/blockchain-in-js-workshop-2021/blob/lesson5/src/cryptoCurrency/Trie.js
 
 ### 代码 commint 地址
 
-https://github.com/CUITBlockchain/blockchain-in-js-workshop-2021/commit/25f3a0d83a9fff2b4514c5503f470df939d0c2af
-
+https://github.com/coconal/blockchain-in-js-workshop-2021/commits/lesson5/src/cryptoCurrency/Trie.js
 
 ### 代码截图
 
@@ -58,12 +57,11 @@ https://github.com/CUITBlockchain/blockchain-in-js-workshop-2021/commit/25f3a0d8
 
 
 ## 第三课代码
-
+https://github.com/coconal/blockchain-in-js-workshop-2021/blob/lesson5/src/cryptoCurrency/PatriciaMerkleTrie.js
 
 ### 代码 commint 地址
 
-https://github.com/CUITBlockchain/blockchain-in-js-workshop-2021/commit/25f3a0d83a9fff2b4514c5503f470df939d0c2af
-
+https://github.com/coconal/blockchain-in-js-workshop-2021/commits/lesson5/src/cryptoCurrency/PatriciaMerkleTrie.js
 
 ### 代码截图
 
