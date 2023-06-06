@@ -65,7 +65,7 @@ https://github.com/coconal/blockchain-in-js-workshop-2021/commits/lesson5/src/cr
 - 使用缓存：对于频繁查询的数据，可以使用缓存来提高查询效率，如使用缓存系统 Memcached 或 Redis。
 - 分布式查询：对于大型系统，可以将数据分散到多台机器中，使用分布式查询来提高查询效率。
 
----
+
 
 
 ## 第三课代码
