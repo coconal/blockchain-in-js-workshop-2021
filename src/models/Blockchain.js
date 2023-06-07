@@ -1,5 +1,9 @@
+
 // Blockchain
 import {maxBy, prop, reduce, reverse, unfold, values} from "ramda";
+
+
+import UTXOPool from './UTXOPool.js'
 
 
 class Blockchain {
@@ -10,6 +14,7 @@ class Blockchain {
       - 存储区块的映射
   */
 
+
   constructor(name) {
     this.blocks={}
     this.name=name
@@ -17,19 +22,8 @@ class Blockchain {
   }
 
 
-
-
-
-
-
-  maxHeightBlock() {
-    const blocks = values(this.blocks);
-    const maxByHeight = maxBy(prop("height"));
-    const maxHeightBlock = reduce(maxByHeight, blocks[0], blocks);
-    return maxHeightBlock;
-  }
-
   longestChain() {
+
     const getParent = x => {
       if (x === undefined) {
         return false;
@@ -39,7 +33,6 @@ class Blockchain {
     };
     return reverse(unfold(getParent, this.maxHeightBlock()));
   }
-
 
 
 
@@ -53,11 +46,15 @@ class Blockchain {
   }
 
 
+  // 获得区块高度最高的区块
+  maxHeightBlock() {
+    const blocks = values(this.blocks);
+    const maxByHeight = maxBy(prop("height"));
+    const maxHeightBlock = reduce(maxByHeight, blocks[0], blocks);
+    return maxHeightBlock;
+  }
+
   // 添加区块
-
-  /*
-
-  */
   _addBlock(block) {
 
     if (!block.isValid())
@@ -85,6 +82,9 @@ class Blockchain {
     this.blocks[block.hash] = block;
     // 添加 UTXO 快照与更新的相关逻辑
 
+
+    if (!block.isValid()) return
+    if (this.containsBlock(block)) return
 
   }
 

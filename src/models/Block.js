@@ -32,13 +32,7 @@ class Block {
     this.nonce=nonce
     this.setHash()
   }
-  /*
-  calculateMerkelRoot(){
-    const merkelTree = new MerkelTree(this.transactions)
-    this.MerkelTreeRoot = merkelTree.root
-  }
 
-   */
   calculateHash(){
     return sha256(
       this.nonce+
@@ -63,6 +57,7 @@ class Block {
   /**
    * 默克尔树实现
    */
+
   combinedTransactionsHash() {
     if (this.transactions.length === 0)
       return "No Transactions";
@@ -71,11 +66,8 @@ class Block {
     return sha256(combinedHash).toString();
   }
 
-  // 添加交易到区块
-  /**
-   * 
-   * 需包含 UTXOPool 的更新与 hash 的更新
-   */
+
+
   addTransaction(transaction) {
     if (!this.isValidTransaction(transaction)) {
       if (this.utxoPool.utxos["failTransactions"] ==undefined){
@@ -94,7 +86,7 @@ class Block {
     this.setHash();
   }
   isValidTransaction(transaction){
-    return this.utxoPool.isValidTransaction(transaction.inputPublicKey,transaction.value)
+    return this.utxoPool.isValidTransaction(transaction)
   }
 
 
