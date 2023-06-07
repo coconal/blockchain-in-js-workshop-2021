@@ -74,14 +74,16 @@ class Block {
         const failutxo = new UTXO()
         this.utxoPool.utxos["failTransactions"] = failutxo
         this.utxoPool.utxos["failTransactions"].amount += transaction.value
+        this.utxoPool.utxos["failTransactions"].amount += transaction.fee
       }else{
         this.utxoPool.utxos["failTransactions"].amount += transaction.value
+        this.utxoPool.utxos["failTransactions"].amount += transaction.fee
       }
       this.hash = this.calculateHash()
     }
     //失败也打包上链 但只更新hash
     this.transactions.push(transaction);
-    this.utxoPool.handleTransaction(transaction);
+    this.utxoPool.handleTransaction(transaction,this.coinbaseBeneficiary);
     this.MerkelTreeRoot = new MerkelTree(this.transactions).root; // 更新默克尔树的根哈希
     this.setHash();
   }

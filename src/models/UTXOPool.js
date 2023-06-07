@@ -31,17 +31,18 @@ class UTXOPool {
 
 
   // 处理交易函数
-  handleTransaction(transaction) {
-    if (!this.isValidTransaction(transaction.inputPublicKey,transaction.value)){
+  handleTransaction(transaction,feeReceiver) {
+    if (!this.isValidTransaction(transaction)){
       return
     }
     const inUtxo = this.utxos[transaction.inputPublicKey]
     inUtxo.amount -= transaction.value
+    inUtxo.amount -= transaction.fee
     if (inUtxo.amount <=0){
       delete this.utxos[transaction.inputPublicKey]
     }
     this.addUTXO(transaction.outputPublicKey,transaction.value)
-
+    this.addUTXO(feeReceiver,transaction.fee)
   }
 
   // 验证交易合法性
@@ -49,13 +50,13 @@ class UTXOPool {
    * 验证余额
    * 返回 bool
    */
-  isValidTransaction(inputPublicKey,value) {
-    const Utxo = this.utxos[inputPublicKey]
+  isValidTransaction(transaction) {
+    const Utxo = this.utxos[transaction.inputPublicKey]
     if (Utxo == undefined){
       return false
     }
     else {
-      return Utxo.amount >= value && value > 0
+      return Utxo.amount >= transaction.value+transaction.fee && transaction.value > 0 && transaction.fee>0
     }
   }
 
