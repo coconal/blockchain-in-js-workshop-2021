@@ -17,7 +17,7 @@ class Block {
     this.coinbaseBeneficiary = coinbaseBeneficiary
     this.utxoPool = new UTXOPool()
     this.transactions = {}
-    //this.calculateMerkelRoot()
+    
   }
 
   isValid() {
@@ -29,13 +29,6 @@ class Block {
     this.nonce=nonce
     this.setHash()
   }
-  /*
-  calculateMerkelRoot(){
-    const merkelTree = new MerkelTree(this.transactions)
-    this.MerkelTreeRoot = merkelTree.root
-  }
-
-   */
   calculateHash(){
     return sha256(
       this.nonce+
