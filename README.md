@@ -157,7 +157,8 @@ https://github.com/coconal/blockchain-in-js-workshop-2021/commits/lesson6
 
 > 将截图上传至网盘，放入链接即可
 
-[](图片链接放这里)
+[链接：https://pan.baidu.com/s/1naj8tM4inNTINCrun7mQMA?pwd=82b6
+提取码：82b6](图片链接放这里)
 
 
 ### 主观与讨论题内容
