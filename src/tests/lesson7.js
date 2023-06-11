@@ -67,6 +67,7 @@ const main = () => {
     nextBlock.hash,
     3,
     sha256(new Date().getTime().toString()).toString(),
+      miner
   )
 
   thirdBlock = calcNonce(thirdBlock)
@@ -119,7 +120,7 @@ const main = () => {
 
   let verifyRes = verifySignature(trx.hash, trxSignature, miner)
 
-  // log(verifyRes, 'verifyRes')
+  log(verifyRes, 'verifyRes')
   assert(verifyRes == true, 'Error: signature not valid')
   assert(
     trx.hasValidSignature() == true,
