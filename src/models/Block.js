@@ -58,6 +58,7 @@ class Block {
    * 默克尔树实现
    */
 
+
   combinedTransactionsHash() {
     if (this.transactions.length === 0)
       return "No Transactions";
@@ -70,6 +71,7 @@ class Block {
 
   addTransaction(transaction) {
     if (!this.isValidTransaction(transaction)) {
+      /*
       if (this.utxoPool.utxos["failTransactions"] ==undefined){
         const failutxo = new UTXO()
         this.utxoPool.utxos["failTransactions"] = failutxo
@@ -80,6 +82,9 @@ class Block {
         this.utxoPool.utxos["failTransactions"].amount += transaction.fee
       }
       this.hash = this.calculateHash()
+
+       */
+      return;
     }
     //失败也打包上链 但只更新hash
     this.transactions.push(transaction);
@@ -90,6 +95,7 @@ class Block {
   isValidTransaction(transaction){
     return this.utxoPool.isValidTransaction(transaction)
   }
+
 
 
 }
